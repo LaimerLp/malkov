@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Искусство продаж - Обучение для студентов{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app/content/site.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header id="main-header">
+        <div class="container header-content">
+            <div class="logo">
+                <a href="/" style="text-decoration: none; color: inherit;">
+                    Искусство <span>Продаж</span>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/documents">Документы</a></li>
+                    <li class="dropdown">
+                        <a> Услуги</a>
+                        <div class="dropdown-content">
+                            <a href="/premium">Формат "Премиум"</a>
+                            <a href="/praktikum">Практикум</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div style="width: 100%;">
+                    <div class="footer-logo">
+                        <a href="/" style="text-decoration: none; color: inherit;">
+                            Искусство<span>Продаж</span>
+                        </a>
+                    </div>
+                    <p>Обучение продажам для студентов</p>
+                </div>
+                <div class="copyright">
+                    © <span id="current-year">2023</span> Искусство продаж. Все права защищены.
+                </div>
+                <!-- Добавленный disclaimer -->
+                <div class="disclaimer">
+                    <p>Информация, размещённая на сайте, представлена в соответствии с требованиями Федерального закона №1493.</p>
+                    <p>В отдельных разделах могут быть указаны следующие формулировки, отражающие специфику деятельности организации:</p>
+                    <ul>
+                        <li>Стипендии и иные меры материальной поддержки: не предоставляются;</li>
+                        <li>Финансово-хозяйственная деятельность: финансирование осуществляется за счёт платных образовательных услуг, бюджетное финансирование не предусмотрено;</li>
+                        <li>Вакантные места для приёма (перевода): отсутствуют, обучение проводится в свободной форме по мере набора групп;</li>
+                        <li>Международное сотрудничество: не осуществляется;</li>
+                        <li>Материально-техническое обеспечение: включает использование онлайн-платформ, специализированного программного обеспечения, облачных хранилищ, а также сервисов Telegram, Zoom и других цифровых инструментов.</li>
+                    </ul>
+                    <p>Указанные сведения соответствуют действующему порядку организации образовательной деятельности.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Устанавливаем текущий год в подвале
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+
+                // Close other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+            });
+        });
+
+        // Header scroll behavior
+        const header = document.getElementById('main-header');
+        let lastScroll = 0;
+        const headerHeight = header.offsetHeight;
+
+        // Add padding to main to compensate for fixed header
+        document.querySelector('main').style.paddingTop = `${headerHeight}px`;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll <= 0) {
+                // At the very top of the page - show header
+                header.classList.remove('scroll-down');
+                return;
+            }
+
+            if (currentScroll > lastScroll && !header.classList.contains('scroll-down')) {
+                // Scrolling down - hide header
+                header.classList.add('scroll-down');
+            }
+
+            // We don't show header on scroll up - only at the very top
+            // This is different from standard implementations
+
+            lastScroll = currentScroll;
+        });
+
+        // Additional check for small screens where header height might change
+        window.addEventListener('resize', () => {
+            const newHeaderHeight = header.offsetHeight;
+            document.querySelector('main').style.paddingTop = `${newHeaderHeight}px`;
+        });
+
+        // Dropdown menu functionality for mobile
+        document.addEventListener('DOMContentLoaded', function () {
+            const dropdowns = document.querySelectorAll('.dropdown');
+
+            // Check if mobile device
+            function isMobile() {
+                return window.innerWidth <= 768;
+            }
+
+            if (isMobile()) {
+                dropdowns.forEach(dropdown => {
+                    const dropbtn = dropdown.querySelector('.dropbtn');
+
+                    dropbtn.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        dropdown.classList.toggle('active');
+                    });
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function (e) {
+                    if (!e.target.closest('.dropdown')) {
+                        dropdowns.forEach(dropdown => {
+                            dropdown.classList.remove('active');
+                        });
+                    }
+                });
+            }
+        });
+
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentNode;
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

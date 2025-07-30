@@ -1,0 +1,13 @@
+/* Стили для текста внутри редактора */
+.cke_editable {
+    color: #808080 !important; /* Серый цвет текста */
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Стили для отображения на сайте */
+.testimonial-text {
+    color: #808080; /* Серый цвет */
+    font-size: 16px;
+    line-height: 1.6;
+}

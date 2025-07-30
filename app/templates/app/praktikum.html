@@ -1,0 +1,138 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<div class="premium-container">
+    <div class="premium-card">
+        <div class="left-section">
+            <div class="tariff-title">Практикум "Старт в продажах с нуля"</div>
+
+            <div class="price-header">
+                <div class="original-price">1000 рублей</div>
+                <div class="discount-price">500 рублей <span class="badge1">ЭКОНОМИЯ 50%</span></div>
+            </div>
+
+            <ul class="features-list">
+                <li>
+                    <div class="feature-icon">🎯</div>
+                    <label>Как пройти собеседование, даже если ты не уверен в себе и “без опыта” </label>
+                </li>
+                <li>
+                    <div class="feature-icon">💬</div>
+                    <label>Скрипт разговора, который мы реально используем на проектах </label>
+                </li>
+                <li>
+                    <div class="feature-icon">📝</div>
+                    <label>Проверка домашки куратором — скажет, где у тебя косяки и как улучшить</label>
+                </li>
+                <li>
+                    <div class="feature-icon">👥</div>
+                    <label>Бонус: мини-практика — чтобы попробовать себя в диалоге (без страха и осуждения)</label>
+                </li>
+                <li>
+                    <div class="feature-icon">📅</div>
+                    <label>4 практических заданий с проверкой</label>
+                </li>
+                <li>
+                    <div class="feature-icon">📷</div>
+                    <label>2 видео созвона</label>
+                </li>
+            </ul>
+
+            <div class="description">
+                <h2>Что вы получите:</h2>
+                <p>Практикум «Старт в продажах с нуля» — отличный старт для новичков, которые хотят попробовать себя в продажах и быстро выйти на результат. Ты получишь рабочий скрипт и мини-практику, чтобы уверенно пройти собеседование и взять первый проект без страха и сомнений.</p>
+            </div>
+        </div>
+
+        <div class="right-section">
+            <div id="success-message" class="success-message">
+                Форма успешно отправлена! Мы свяжемся с вами в ближайшее время.
+            </div>
+
+            <form id="payment-form">
+                <div class="contact-info">
+                    <div class="input-group">
+                        <label for="user-name"><strong>Ваше имя:</strong></label>
+                        <input type="text" id="user-name" placeholder=" Введите ваше имя" required>
+                        <div id="name-error" class="error-message">Пожалуйста, введите ваше имя</div>
+                    </div>
+                    <div class="input-group">
+                        <label for="user-email"><strong>Ваш email:</strong></label>
+                        <input type="email" id="user-email" placeholder=" Введите ваш email" required>
+                        <div id="email-error" class="error-message">Пожалуйста, введите корректный email</div>
+                    </div>
+                </div>
+
+                <button type="submit" class="pay-button">ОПЛАТИТЬ</button>
+
+                <div class="agreements">
+                    <div class="agreement-item">
+                        <input type="checkbox" id="agreement1" required>
+                        <label for="agreement1">Я согласен с условиями <a href="/documents" class="agreement-link">Оферты</a></label>
+                        <div id="agreement1-error" class="error-message">Это поле обязательно</div>
+                    </div>
+                    <div class="agreement-item">
+                        <input type="checkbox" id="agreement2" required>
+                        <label for="agreement2">Я согласен на обработку моих <a href="/documents" class="agreement-link">персональных данных</a></label>
+                        <div id="agreement2-error" class="error-message">Это поле обязательно</div>
+                    </div>
+                    <div class="agreement-item">
+                        <input type="checkbox" id="agreement3">
+                        <label for="agreement3">Я согласен на получение <a href="/documents" class="agreement-link">информационных и маркетинговых рассылок</a> (вы в любой момент можете отказаться от получения писем на почте)</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('payment-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        resetErrors();
+
+        let isValid = true;
+        const name = document.getElementById('user-name').value.trim();
+        const email = document.getElementById('user-email').value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (name.length < 2) {
+            showError('user-name', 'name-error');
+            isValid = false;
+        }
+
+        if (!emailRegex.test(email)) {
+            showError('user-email', 'email-error');
+            isValid = false;
+        }
+
+        if (!document.getElementById('agreement1').checked) {
+            showError('agreement1', 'agreement1-error');
+            isValid = false;
+        }
+
+        if (!document.getElementById('agreement2').checked) {
+            showError('agreement2', 'agreement2-error');
+            isValid = false;
+        }
+
+        if (isValid) {
+            document.getElementById('success-message').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('success-message').style.display = 'none';
+            }, 5000);
+            console.log('Форма отправлена:', { name, email });
+        }
+    });
+
+    function showError(inputId, errorId) {
+        document.getElementById(inputId).classList.add('input-error');
+        document.getElementById(errorId).style.display = 'block';
+    }
+
+    function resetErrors() {
+        document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+        document.querySelectorAll('.input-error').forEach(el => el.classList.remove('input-error'));
+    }
+</script>
+{% endblock %}
