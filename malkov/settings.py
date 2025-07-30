@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 from http.client import FAILED_DEPENDENCY
 import os
 import posixpath
+from pathlib import Path
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'a834237d-3103-4fbd-a0f4-b9c044b556e0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 
 ALLOWED_HOSTS = []
