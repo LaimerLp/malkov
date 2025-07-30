@@ -43,28 +43,28 @@ INSTALLED_APPS = [
     'ckeditor',
 ]
 
-# Настройки CKEditor
+# РќР°СЃС‚СЂРѕР№РєРё CKEditor
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Custom',
         'toolbar_Custom': [
             ['Bold', 'Italic', 'Underline'],
             ['NumberedList', 'BulletedList'],
-            ['TextColor', 'BGColor'],  # Добавляем кнопки цвета текста и фона
+            ['TextColor', 'BGColor'],  # Р”РѕР±Р°РІР»СЏРµРј РєРЅРѕРїРєРё С†РІРµС‚Р° С‚РµРєСЃС‚Р° Рё С„РѕРЅР°
             ['Link', 'Unlink'],
             ['RemoveFormat', 'Source']
         ],
         'height': 300,
         'width': '100%',
-        'contentsCss': '/static/css/ckeditor.css',  # Добавляем кастомный CSS
-        'bodyClass': 'ckeditor-gray-text',  # Добавляем класс для стилизации
-        'uiColor': '#f5f5f5',  # Цвет интерфейса редактора
-        'extraPlugins': 'colorbutton',  # Подключаем плагин для работы с цветами
+        'contentsCss': '/static/css/ckeditor.css',  # Р”РѕР±Р°РІР»СЏРµРј РєР°СЃС‚РѕРјРЅС‹Р№ CSS
+        'bodyClass': 'ckeditor-gray-text',  # Р”РѕР±Р°РІР»СЏРµРј РєР»Р°СЃСЃ РґР»СЏ СЃС‚РёР»РёР·Р°С†РёРё
+        'uiColor': '#f5f5f5',  # Р¦РІРµС‚ РёРЅС‚РµСЂС„РµР№СЃР° СЂРµРґР°РєС‚РѕСЂР°
+        'extraPlugins': 'colorbutton',  # РџРѕРґРєР»СЋС‡Р°РµРј РїР»Р°РіРёРЅ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ С†РІРµС‚Р°РјРё
         'colorButton_colors': ( 
             'FFFFFF,Black,000000,FFFFFF,FF0000,00FF00,0000FF,FFFF00,FF00FF,00FFFF,'
             '800000,008000,000080,808000,800080,008080,C0C0C0,808080,F0F0F0'
-        ),  # Палитра цветов
-        'colorButton_enableMore': True,  # Разрешить расширенную палитру
+        ),  # РџР°Р»РёС‚СЂР° С†РІРµС‚РѕРІ
+        'colorButton_enableMore': True,  # Р Р°Р·СЂРµС€РёС‚СЊ СЂР°СЃС€РёСЂРµРЅРЅСѓСЋ РїР°Р»РёС‚СЂСѓ
     },
 }
 
@@ -141,4 +141,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] if os.path.exists(os.path.join(BASE_DIR, 'static')) else []
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')    # Для продакшена (опционально)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')    # Р”Р»СЏ РїСЂРѕРґР°РєС€РµРЅР° (РѕРїС†РёРѕРЅР°Р»СЊРЅРѕ)
