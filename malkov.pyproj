@@ -62,6 +62,7 @@
     <Content Include="app\static\app\content\1.png" />
     <Content Include="app\static\app\content\2.png" />
     <Content Include="app\static\app\content\3.png" />
+    <Content Include="app\static\app\content\4.png" />
     <Content Include="app\static\app\content\ckeditor.css">
       <SubType>Code</SubType>
     </Content>

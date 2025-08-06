@@ -135,9 +135,8 @@ nav ul {
 }
 
     .hero-image img {
-        width: 100%;
+        width: 135%;
         height: auto;
-        max-height: 75vh;
         object-fit: contain;
         object-position: bottom;
         display: block;
@@ -171,7 +170,7 @@ nav ul {
     }
 
     .hero-image img {
-        max-height: 75vh;
+        max-height: 70vh;
     }
 }
 
@@ -671,7 +670,6 @@ nav ul {
     margin: 0 auto;
 }
 
-/* Обновлённый CSS */
 .module-card {
     background-color: #b6ff00;
     border-radius: 16px;
@@ -722,7 +720,7 @@ nav ul {
     line-height: 1.5;
     margin: 0;
 }
-/* ✅ Адаптив */
+/* Адаптив */
 @media (max-width: 1024px) {
     .modules-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1008,7 +1006,6 @@ nav ul {
 }
 
 
-
 /* Form Section */
 .form-section {
     padding: 80px 0;
@@ -1150,38 +1147,6 @@ nav ul {
     border: 1px solid #1a1a1a;
     background: #000000;
     transition: max-height 0.5s ease, padding 0.3s ease;
-}
-
-/* Footer */
-footer {
-    background: #000000;
-    color: white;
-    padding: 40px 0;
-    text-align: center;
-    border-top: 1px solid #B8FF00;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.footer-logo {
-    font-family: 'Tilda Sans', sans-serif;
-    font-weight: 600; /* Semibold */
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #B8FF00;
-}
-
-.copyright {
-    margin-top: 20px;
-    font-size: 18px;
-    color: #aaa;
-    width: 100%;
-    font-weight: 300; /* Light */
 }
 
 /* Responsive Design */
@@ -1355,15 +1320,6 @@ footer {
     margin-right: 15px;
     font-size: 24px;
     color: #B8FF00;
-}
-
-.documents-footer {
-    margin-top: 50px;
-    text-align: center;
-    color: #aaa;
-    font-size: 16px;
-    padding-top: 30px;
-    border-top: 1px solid #333;
 }
 
 .premium-card {
@@ -1713,19 +1669,95 @@ body.premium-page {
     }
 }
 
-/* Альтернативный вариант */
-footer .container {
-    padding-left: 0;
-    margin-left: 0;
-    max-width: 100%;
+/* Footer */
+footer {
+    background: #000000;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+    position: relative; /* Добавлено */
+    width: 100vw; /* Используем viewport width */
+    left: 50%; /* Центрирование */
+    right: 50%; /* Центрирование */
+    margin-left: -50vw; /* Компенсация */
+    margin-right: -50vw; /* Компенсация */
+    box-sizing: border-box;
+}
+
+    footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: #B8FF00;
+        width: 100vw; /* На всю ширину viewport */
+        margin: 0 auto;
+    }
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.footer-left,
+.footer-center,
+.footer-right {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: 20px;
+    text-align: left;
+    padding: 0 15px; /* Добавлены отступы по бокам */
+}
+
+.footer-center {
+    text-align: center;
+}
+
+.footer-right {
+    text-align: right;
+}
+
+.footer-logo {
+    font-family: 'Tilda Sans', sans-serif;
+    font-weight: 600; /* Semibold */
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #B8FF00;
+}
+
+.copyright {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #aaa;
+    width: 100%;
+    font-weight: 300; /* Light */
+}
+
+.footer-left h3,
+.footer-right h3 {
+    color: #B8FF00;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.footer-left p,
+.footer-right p {
+    margin: 8px 0;
+    font-size: 18px;
+    color: #aaa;
 }
 
 .disclaimer {
-    width: calc(100% - 40px);
+    width: 100%; /* Изменено с calc(100% - 40px) на 100% */
     margin: 30px 0 0 0;
-    padding: 20px 20px 0 20px;
+    padding: 20px 0 0 0; /* Убраны боковые padding'и */
     border-top: 1px solid rgba(184, 255, 0, 0.2);
-    text-align: center; /* Выравнивание текста по левому краю */
+    text-align: center;
     font-size: 14px;
     color: #aaa;
     line-height: 1.5;
@@ -1745,6 +1777,17 @@ footer .container {
 
 /* Адаптивные стили для мобильных устройств */
 @media (max-width: 768px) {
+    .footer-left,
+    .footer-center,
+    .footer-right {
+        flex: 100%;
+        text-align: center;
+    }
+
+    .footer-right {
+        text-align: center;
+    }
+
     .disclaimer {
         margin-left: -15px;
         padding-left: 15px;
@@ -1752,6 +1795,29 @@ footer .container {
     }
 
         .disclaimer ul {
-            padding-left: 0.5em; /* Ещё меньше отступ на мобильных */
+            padding-left: 0.5em;
         }
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px; /* Расстояние между иконками */
+    justify-content: flex-end; /* Выравнивание по правому краю (для .footer-right) */
+    margin-top: 10px; /* Отступ сверху */
+}
+
+    .social-icons a {
+        display: inline-block;
+    }
+
+    .social-icons img {
+        height: 40px;
+        width: auto;
+    }
+
+/* Для мобильной версии */
+@media (max-width: 768px) {
+    .social-icons {
+        justify-content: center; /* Центрирование иконок на мобильных */
+    }
 }
